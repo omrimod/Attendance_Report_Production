@@ -20,6 +20,7 @@ services:
     networks:
       - db_net
       - default
+    restart: always
   
   management:
     image: ghcr.io/omrimod/attandance-report-management:latest
@@ -35,6 +36,7 @@ services:
     networks:
       - db_net
       - default
+    restart: always
 
   worker:
     image: ghcr.io/omrimod/attandance-report-worker:latest
@@ -56,6 +58,7 @@ services:
     networks:
       - db_net
       - default
+    restart: always
 
   mongo:
     image: mongo:6.0
@@ -77,6 +80,7 @@ services:
     networks:
       - db_net
     user: "999:999"
+    restart: always
 
 volumes:
   mongo_data:
