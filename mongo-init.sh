@@ -77,11 +77,21 @@ db.createRole(
   }
 )
 
+db.createRole(
+  {
+    role: "readWiteSessions",
+    privileges: [
+      { resource: { db: "Users", collection: "sessions" }, actions: [ "insert", "update", "remove", "find", "createIndex" ] }
+    ],
+    roles: []
+  }
+)
+
 db.createUser(
   {
     user: "$FRONT_USER",
     pwd:  "$FRONT_PASSWORD",
-    roles: [ { role: "readUsers", db: "Users" }, { role: "readWriteAttendance", db: "Users" } ]
+    roles: [ { role: "readUsers", db: "Users" }, { role: "readWriteAttendance", db: "Users" }, { role: "readWiteSessions", db: "Users" } ]
   }
 )
 
