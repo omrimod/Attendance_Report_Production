@@ -17,6 +17,7 @@ services:
        CAPTCHA_SECRET_KEY: ${CAPTCHA_SECRET_KEY}
        HTTPS: true
        PORT: 443
+       SESSION_DURATION_MINUTES: 525600
     networks:
       - db_net
       - default
