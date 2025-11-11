@@ -25,8 +25,6 @@ sleep 10
 mongosh -u "$MONGO_INITDB_ROOT_USERNAME" -p "$MONGO_INITDB_ROOT_PASSWORD" --authenticationDatabase "admin" <<EOF
 // Now we are authenticated and can create the new database and user
 use Users
-db.users.insertOne({employeeNumber: 1, passwordHash: "$hash"})
-
 db.createRole(
   {
     role: "readAttendance",
