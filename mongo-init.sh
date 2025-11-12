@@ -18,7 +18,7 @@ WORKER_PASSWORD=$(openssl rand -base64 12)
 AGENDA_WORKER_PASSWORD=$(openssl rand -base64 12)
 json="{\"front\":{\"name\":\"$FRONT_USER\",\"pass\":\"$FRONT_PASSWORD\"},\"management\":{\"name\":\"$MANAGEMENT_USER\",\"pass\":\"$MANAGEMENT_PASSWORD\"},\"worker\":{\"name\":\"$WORKER_USER\",\"pass\":\"$WORKER_PASSWORD\" ,\"agenda_pass\":\"$AGENDA_WORKER_PASSWORD\"}}"
 echo $json > '/home/mongodb/secrets/sec.json'
-hash=$(echo -n "1234" | sha256sum | awk '{print $1}')
+hash=$(echo -n '1234' | sha256sum | awk '{print $1}')
 sleep 10
 # Run mongosh shell commands, authenticating directly
 
