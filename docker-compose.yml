@@ -17,7 +17,6 @@ services:
        CAPTCHA_SECRET_KEY: ${CAPTCHA_SECRET_KEY}
        HTTPS: true
        PORT: 443
-       SESSION_DURATION_MINUTES: 525600
     networks:
       - db_net
       - default
@@ -32,8 +31,12 @@ services:
       - "3000:3000"
     volumes:
       - secrets:/home/node/secrets:ro
+      - ./cert.pem:/home/node/cert.pem:ro
+      - ./key.pem:/home/node/key.pem:ro
     environment:
-      - TZ=Asia/Jerusalem
+       TZ: Asia/Jerusalem
+       PORT: 3000
+       HTTPS: true
     networks:
       - db_net
       - default
@@ -46,12 +49,13 @@ services:
         condition: service_healthy
     volumes:
       - secrets:/home/node/secrets:ro
+      - reports:/home/node/reports
     environment:
       TZ: Asia/Jerusalem
-      WORKER_INTERVAL: "Dayly at 10:00 AM"
-      SMTP_HOST: "localhost"
+      WORKER_INTERVAL: "Daily at 10:00 AM"
+      SMTP_HOST: ""
       SMTP_PORT: 25
-      SMTP_SECURE: "false"
+      SMTP_SECURE: false
       SMTP_USER: ""
       SMTP_PASS: ""
       SMTP_RECIPIENT: ""
@@ -87,6 +91,7 @@ volumes:
   mongo_data:
   mongo_conf:
   secrets:
+  reports:
 
 networks:
   default:
